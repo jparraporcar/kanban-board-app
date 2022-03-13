@@ -1,2 +1,2 @@
 # kanban-board-app
-A Kanban board app for practicing purpose
+A Kanban board app for practicing purposes
