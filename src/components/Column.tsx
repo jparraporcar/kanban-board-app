@@ -2,12 +2,19 @@ import React, { PropsWithChildren } from "react";
 import "./Column.modules.css";
 import { AddOutline } from "react-ionicons";
 import { EllipsisHorizontalOutline } from "react-ionicons";
+import { useContext } from "react";
+import { MainContext } from "../store/main-context";
 
 interface ColumnProps {
   columnTitle: string;
 }
 
 export const Column: React.FC<PropsWithChildren<ColumnProps>> = (props) => {
+  const MainCtx = useContext(MainContext);
+  const createNewNodeInputHandler = () => {
+    MainCtx.setNewNoteInputIsVisible(true);
+  };
+
   return (
     <div className="Column-main">
       <header className="Column-header">
@@ -19,7 +26,12 @@ export const Column: React.FC<PropsWithChildren<ColumnProps>> = (props) => {
         </div>
         <div className="Column-main__right-menu">
           <div>
-            <AddOutline color={"#00000"} height="25px" width="25px" />
+            <AddOutline
+              color={"#00000"}
+              height="25px"
+              width="25px"
+              onClick={createNewNodeInputHandler}
+            />
           </div>
           <div>
             <EllipsisHorizontalOutline
