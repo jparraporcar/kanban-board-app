@@ -1,13 +1,11 @@
 import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
+import { Column } from "./components/Column";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>Main page</h1>
-      </header>
+      <Column columnTitle="Backlog"></Column>
     </div>
   );
 }
