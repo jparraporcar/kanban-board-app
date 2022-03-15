@@ -3,13 +3,17 @@ import "./App.css";
 import { Column } from "./components/Column";
 import { useContext } from "react";
 import { MainContext } from "./store/main-context";
+import NewNoteInput from "./components/NewNoteInput";
+import Note from "./components/Note";
 
 function App() {
-  const MainCtx = useContext(MainContext);
+  const mainCtx = useContext(MainContext);
   return (
     <div className="App">
       <Column columnTitle="Backlog">
-        {MainCtx.newNoteInputIsVisible && <div>THIS IS A TEST</div>}
+        {mainCtx.newNoteInputIsVisible && <NewNoteInput />}
+        {mainCtx.noteIsVisible &&
+          mainCtx.noteText.map((text) => <Note noteText={text} />)}
       </Column>
     </div>
   );

@@ -1,5 +1,5 @@
 import React, { PropsWithChildren } from "react";
-import "./Column.modules.css";
+import styles from "./Column.module.css";
 import { AddOutline } from "react-ionicons";
 import { EllipsisHorizontalOutline } from "react-ionicons";
 import { useContext } from "react";
@@ -11,26 +11,26 @@ interface ColumnProps {
 
 export const Column: React.FC<PropsWithChildren<ColumnProps>> = (props) => {
   const MainCtx = useContext(MainContext);
-  const createNewNodeInputHandler = () => {
+  const createNewNoteInputHandler = () => {
     MainCtx.setNewNoteInputIsVisible(true);
   };
 
   return (
-    <div className="Column-main">
-      <header className="Column-header">
-        <div className="Column-main__left-menu">
-          <div className="Column-main__left-menu__badge">10</div>
-          <div className="Column-main__left-menu__title">
+    <div className={styles["Column-main"]}>
+      <header className={styles["Column-header"]}>
+        <div className={styles["Column-main__left-menu"]}>
+          <div className={styles["Column-main__left-menu__badge"]}>10</div>
+          <div className={styles["Column-main__left-menu__title"]}>
             {props.columnTitle}
           </div>
         </div>
-        <div className="Column-main__right-menu">
+        <div className={styles["Column-main__right-menu"]}>
           <div>
             <AddOutline
               color={"#00000"}
               height="25px"
               width="25px"
-              onClick={createNewNodeInputHandler}
+              onClick={createNewNoteInputHandler}
             />
           </div>
           <div>
