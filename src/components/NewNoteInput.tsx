@@ -6,27 +6,27 @@
 
 import styles from "./NewNoteInput.module.css";
 
-import React from "react";
-import { MainContext } from "../store/main-context";
-import { useContext, useRef } from "react";
+import React, { Dispatch, SetStateAction, useRef, useState } from "react";
 
-const NewNoteInput: React.FC = () => {
+interface NewNoteInputProps {
+  onNewNoteInputIsHidden: () => void;
+  onAddNoteClickHandler: (text: string) => void;
+}
+
+const NewNoteInput: React.FC<NewNoteInputProps> = (props) => {
+  const [noteText, setNoteText] = useState<string[]>([]);
   const textAreaElement = useRef<HTMLTextAreaElement>(null);
-  const mainCtx = useContext(MainContext);
 
   const cancelNewNoteInputHandler = () => {
-    mainCtx.setNewNoteInputIsVisible(false);
+    props.onNewNoteInputIsHidden();
   };
 
   //TODO: By the moment I am going to add ! to bypass the Typescript check but later It will be necessary to add
   // some sort of validation
   //TODO: Here it is necessary to ensure that the states are going to be called in the order stablished, something
   // that at the moment Im not sure if it will be like this... how React schedules states updates?
-  const addNewNoteInoutHandler = () => {
-    mainCtx.setNoteText((prevState) => {
-      return [...prevState, textAreaElement.current!.value];
-    });
-    mainCtx.setNoteIsVisible(true);
+  const addNewNoteInputHandler = () => {
+    props.onAddNoteClickHandler(textAreaElement.current!.value);
   };
 
   return (
@@ -35,7 +35,7 @@ const NewNoteInput: React.FC = () => {
       <div className={styles["newnoteinput-buttons"]}>
         <button
           className={styles["button-add"]}
-          onClick={addNewNoteInoutHandler}
+          onClick={addNewNoteInputHandler}
         >
           Add
         </button>

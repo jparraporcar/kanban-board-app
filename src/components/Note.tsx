@@ -1,15 +1,13 @@
 import styles from "./Note.module.css";
 import { EllipsisHorizontalOutline } from "react-ionicons";
 import { ReorderTwoOutline } from "react-ionicons";
-import { MainContext } from "../store/main-context";
-import { useContext } from "react";
+import { SetStateAction, useContext } from "react";
 
 interface NoteProps {
   noteText: string;
 }
 
 const Note: React.FC<NoteProps> = (props) => {
-  const mainCtx = useContext(MainContext);
   return (
     <div className={styles["note-main"]}>
       <div className={styles["note-main__reordericon"]}>

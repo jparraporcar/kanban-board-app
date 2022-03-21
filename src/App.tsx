@@ -1,20 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
 import { Column } from "./components/Column";
-import { useContext } from "react";
-import { MainContext } from "./store/main-context";
-import NewNoteInput from "./components/NewNoteInput";
-import Note from "./components/Note";
 
 function App() {
-  const mainCtx = useContext(MainContext);
+  const [columns, setColumns] = useState<JSX.Element[]>([
+    <Column columnTitle="Backlog" />,
+  ]);
+
+  const addColumnHandler = () => {
+    console.log(columns.length);
+    setColumns((prevState) => [...prevState, <Column columnTitle="xxx" />]);
+  };
+
   return (
     <div className="App">
-      <Column columnTitle="Backlog">
-        {mainCtx.newNoteInputIsVisible && <NewNoteInput />}
-        {mainCtx.noteIsVisible &&
-          mainCtx.noteText.map((text) => <Note noteText={text} />)}
-      </Column>
+      <div>
+        <button onClick={addColumnHandler}>Add Column</button>
+      </div>
+      {columns}
     </div>
   );
 }
