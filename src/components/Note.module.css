@@ -1,7 +1,7 @@
 .note-main {
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
+  align-items: center;
   border: 1px solid var(--borderCardColour);
   border-radius: 10px;
   margin: 10px;
@@ -20,17 +20,14 @@
 }
 
 .note-main__reordericon {
-  text-align: center;
-  flex-basis: 8%;
-  flex-grow: 1;
-  flex-shrink: 1;
   padding: 5px;
 }
 
 .note-main__ellipsisicon {
-  text-align: center;
-  flex-basis: 8%;
-  flex-grow: 1;
-  flex-shrink: 1;
   padding: 5px;
+}
+
+span {
+  display: flex;
+  align-items: center;
 }

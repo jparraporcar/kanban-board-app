@@ -1,16 +1,15 @@
 //TODO: Have a look at the overflow property one the component is setup, see link below:
 //      https://www.w3schools.com/cssref/css3_pr_resize.asp
-//TODO: Talk with Alex about how to setup the margin between the buttons and the textarea
-//      in order to have exactly 10px. 5px of bottom margin of the textarea apparently are the same
-//      as 10pxx of left and right margin of the same textarea div parent
 
 import styles from "./NewNoteInput.module.css";
-
-import React, { Dispatch, SetStateAction, useRef, useState } from "react";
+import React, { MouseEventHandler, useRef, useState } from "react";
+import { NoteInterface } from "../types";
+import { EventEmitter } from "stream";
 
 interface NewNoteInputProps {
   onNewNoteInputIsHidden: () => void;
-  onAddNoteClickHandler: (text: string) => void;
+  onAddNoteClickHandler: (item: NoteInterface) => void;
+  category: string;
 }
 
 const NewNoteInput: React.FC<NewNoteInputProps> = (props) => {
@@ -24,9 +23,14 @@ const NewNoteInput: React.FC<NewNoteInputProps> = (props) => {
   //TODO: By the moment I am going to add ! to bypass the Typescript check but later It will be necessary to add
   // some sort of validation
   //TODO: Here it is necessary to ensure that the states are going to be called in the order stablished, something
-  // that at the moment Im not sure if it will be like this... how React schedules states updates?
+
   const addNewNoteInputHandler = () => {
-    props.onAddNoteClickHandler(textAreaElement.current!.value);
+    const item = {
+      text: textAreaElement.current!.value,
+      idNote: Math.random(),
+      category: props.category,
+    };
+    props.onAddNoteClickHandler(item);
   };
 
   return (
