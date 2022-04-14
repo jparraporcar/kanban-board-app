@@ -18,37 +18,31 @@ function App() {
     setColumns((prevState) => {
       return [...prevState, newColumn];
     });
+    columnCategoryRef.current!.value = "";
   };
 
   return (
     <DndProvider backend={HTML5Backend}>
-      <div className="App">
-        <div>
-          <form
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              padding: 0,
-              margin: 0,
-              width: "137px",
-            }}
-          >
-            <input type="text" ref={columnCategoryRef} />
-            <button
-              onClick={addColumnHandler}
-              style={{ width: "139px", padding: 0, margin: 0 }}
-            >
-              Add Column
-            </button>
+      <div className="App-main">
+        <div className="App-form">
+          <form>
+            <button onClick={addColumnHandler}>Add Column</button>
+            <input
+              type="text"
+              ref={columnCategoryRef}
+              style={{ marginTop: "10px" }}
+            />
           </form>
         </div>
-        {columns.map((column) => (
-          <Column
-            key={column.idColumn}
-            category={column.category}
-            idColumn={column.idColumn}
-          />
-        ))}
+        <div className="App-columns">
+          {columns.map((column) => (
+            <Column
+              key={column.idColumn}
+              category={column.category}
+              idColumn={column.idColumn}
+            />
+          ))}
+        </div>
       </div>
     </DndProvider>
   );

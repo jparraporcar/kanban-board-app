@@ -16,6 +16,7 @@ interface ColumnProps {
 
 export const Column: React.FC<ColumnProps> = (props) => {
   const ctx = useContext(ListContext);
+  const [addOutlineColor, setAddOutlineColor] = useState<string>("#00000");
   const [newNoteInputIsVisible, setNewNoteInputIsVisible] =
     useState<boolean>(false);
   const onDrop = (item: NoteInterface) => {
@@ -27,17 +28,17 @@ export const Column: React.FC<ColumnProps> = (props) => {
     });
   };
 
-  const [{ isOver }, drop] = useDrop(() => ({
+  const [{ isOver, handlerId }, drop] = useDrop(() => ({
     accept: ItemTypes.CARD,
     drop: (item: NoteInterface, monitor) => onDrop(item),
-    // canDrop: (item: NoteInterface) => {
-    //   console.log(item.category);
-    //   console.log(props.category);
-    //   return item.category !== props.category;
-    // },
     collect: (monitor) => ({
       isOver: !!monitor.isOver(),
+      handlerId: monitor.getHandlerId(),
     }),
+    hover: (item, monitor) => {
+      console.log(monitor.getClientOffset());
+      console.log(handlerId);
+    },
   }));
 
   const onNewNoteInputIsVisible = () => {
@@ -65,11 +66,11 @@ export const Column: React.FC<ColumnProps> = (props) => {
     });
   };
 
+  const onAddHover = () => setAddOutlineColor("#87CEFA");
+  const onAddLeave = () => setAddOutlineColor("#00000");
+
   return (
-    <div
-      className={styles["Column-main"]}
-      style={isOver ? { background: "grey" } : undefined}
-    >
+    <div className={styles["Column-main"]}>
       <header className={styles["Column-header"]}>
         <div className={styles["Column-header__left-menu"]}>
           <div className={styles["Column-header__left-menu__badge"]}>1</div>
@@ -78,9 +79,9 @@ export const Column: React.FC<ColumnProps> = (props) => {
           </div>
         </div>
         <div className={styles["Column-header__right-menu"]}>
-          <div>
+          <div onMouseOver={onAddHover} onMouseLeave={onAddLeave}>
             <AddOutline
-              color={"#00000"}
+              color={addOutlineColor}
               height="25px"
               width="25px"
               onClick={onNewNoteInputIsVisible}

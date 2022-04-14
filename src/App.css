@@ -1,14 +1,49 @@
-.App {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  margin: 25px;
-}
-
 * {
   box-sizing: border-box;
 }
 
+.App-main {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin: 25px;
+}
+
+.App-form {
+  text-align: center;
+  padding: 0;
+  margin-left: 15px;
+  border: 1;
+  width: "139px";
+}
+
+input {
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.App-columns {
+  display: flex;
+  flex-direction: row;
+  justify-items: flex-start;
+  align-items: flex-start;
+  overflow: scroll;
+}
+
+
 :root {
   --borderCardColour: rgb(216, 214, 214);
+}
+
+button {
+  width: "139px";
+  padding: 0;
+  margin: 0;
+  border: 1;
+  transition: all .5s ease;
+}
+
+button:hover {
+  transform: scale(1.2)
 }

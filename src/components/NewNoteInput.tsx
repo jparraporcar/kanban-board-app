@@ -4,7 +4,6 @@
 import styles from "./NewNoteInput.module.css";
 import React, { MouseEventHandler, useRef, useState } from "react";
 import { NoteInterface } from "../types";
-import { EventEmitter } from "stream";
 
 interface NewNoteInputProps {
   onNewNoteInputIsHidden: () => void;
