@@ -2,13 +2,7 @@ import styles from "./Note.module.css";
 import { ReorderTwoOutline, TrashOutline } from "react-ionicons";
 import { useDrag } from "react-dnd";
 import { ItemTypes } from "../utils/types";
-
-interface NoteProps {
-  text: string;
-  idNote: number;
-  category: string;
-  onDeleteNoteHandler: (id: number) => void;
-}
+import { NoteProps } from "../types/types-index";
 
 const Note: React.FC<NoteProps> = (props) => {
   const [{ isDragging }, drag] = useDrag(() => ({
@@ -20,8 +14,8 @@ const Note: React.FC<NoteProps> = (props) => {
     },
   }));
 
-  const deleteNote = () => {
-    props.onDeleteNoteHandler(props.idNote);
+  const trashClickHandler = () => {
+    props.onDeleteNote(props.idNote);
   };
 
   return (
@@ -40,7 +34,7 @@ const Note: React.FC<NoteProps> = (props) => {
           color={"#00000"}
           height="20px"
           width="20px"
-          onClick={deleteNote}
+          onClick={trashClickHandler}
         />
       </div>
     </div>

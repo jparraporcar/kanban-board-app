@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { ListContextProvider } from "./store/list-context";
+import { ListContextProvider } from "./store/main-context";
 
 ReactDOM.render(
   <ListContextProvider>
