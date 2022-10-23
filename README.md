@@ -50,5 +50,3 @@ You can learn more in the [Create React App documentation](https://facebook.gith
 # kanban-board-app
 
 A Kanban board app for practicing purposes
-
-## --- This is an extra text to test signed commits---
