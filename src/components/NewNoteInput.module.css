@@ -34,6 +34,7 @@ button {
 }
 
 .button-add:hover {
+  transform: scale(1.05);
   background-color: #1d6832;
 }
 
@@ -42,5 +43,6 @@ button {
 }
 
 .button-cancel:hover {
+  transform: scale(1.05);
   background-color: rgb(214, 211, 211);
 }

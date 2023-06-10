@@ -1,7 +1,6 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styles from "./Column.module.css";
-import { AddOutline } from "react-ionicons";
-import { EllipsisHorizontalOutline } from "react-ionicons";
+import { AddOutline, TrashOutline } from "react-ionicons";
 import Note from "./Note";
 import NewNoteInput from "./NewNoteInput";
 import { useDrop } from "react-dnd";
@@ -10,7 +9,6 @@ import { ColumnProps, INote } from "../types/types-index";
 import { MainContext } from "../store/main-context";
 
 export const Column: React.FC<ColumnProps> = (props) => {
-  const [notesCount, setNotesCount] = useState<number>(0);
   const [addOutlineColor, setAddOutlineColor] = useState<string>("#00000");
   const [newNoteInputIsVisible, setNewNoteInputIsVisible] =
     useState<boolean>(false);
@@ -23,7 +21,6 @@ export const Column: React.FC<ColumnProps> = (props) => {
         .concat({ ...item, category: props.category });
       return newState;
     });
-    // notesCounter();
   };
 
   const [{ isOver, handlerId }, drop] = useDrop(() => ({
@@ -47,25 +44,13 @@ export const Column: React.FC<ColumnProps> = (props) => {
     setNewNoteInputIsVisible(false);
   };
 
-  // const notesCounter = () => {
-  //   let numberOfNotesInSameCategory: number;
-  //   mainCtx.textNotes.forEach((note) => {
-  //     if (note.category === props.category) {
-  //       numberOfNotesInSameCategory += 1;
-  //     }
-  //     setNotesCount(numberOfNotesInSameCategory);
-  //   });
-  // };
-
   const addNoteClickHandler = (item: INote) => {
     mainCtx.setTextNotes((prevState) => {
       return [...prevState, item];
     });
-    // notesCounter();
   };
 
   const deleteNoteHandler = (id: number) => {
-    setNotesCount((prevState) => prevState - 1);
     mainCtx.setTextNotes((prevState) => {
       const textNotesCopy = [...prevState];
       const filteredTextNotes = textNotesCopy.filter(
@@ -75,16 +60,34 @@ export const Column: React.FC<ColumnProps> = (props) => {
     });
   };
 
+  const trashColumnClickHandler = () => {
+    mainCtx.setColumns((prevState) => {
+      const columnsCopy = [...prevState];
+      const filteredColumns = columnsCopy.filter(
+        (item) => item.idColumn !== props.idColumn
+      );
+      return filteredColumns;
+    });
+    mainCtx.setTextNotes((prevState) => {
+      const textNotesCopy = [...prevState];
+      const filteredTextNotes = textNotesCopy.filter(
+        (item) => item.category !== props.category
+      );
+      return filteredTextNotes;
+    });
+  };
+
   const mouseHoverHandler = () => setAddOutlineColor("#87CEFA");
   const mouseLeaveHandler = () => setAddOutlineColor("#00000");
+
+  useEffect(() => {
+    localStorage.setItem("textNotes", JSON.stringify(mainCtx.textNotes));
+  }, [mainCtx.textNotes]);
 
   return (
     <div className={styles["Column-main"]}>
       <header className={styles["Column-header"]}>
         <div className={styles["Column-header__left-menu"]}>
-          <div className={styles["Column-header__left-menu__badge"]}>
-            {notesCount}
-          </div>
           <div className={styles["Column-header__left-menu__title"]}>
             {props.category}
           </div>
@@ -99,10 +102,11 @@ export const Column: React.FC<ColumnProps> = (props) => {
             />
           </div>
           <div>
-            <EllipsisHorizontalOutline
+            <TrashOutline
               color={"#00000"}
-              height="25px"
-              width="25px"
+              height="20px"
+              width="20px"
+              onClick={trashColumnClickHandler}
             />
           </div>
         </div>

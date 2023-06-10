@@ -14,7 +14,7 @@ const Note: React.FC<NoteProps> = (props) => {
     },
   }));
 
-  const trashClickHandler = () => {
+  const trashNoteClickHandler = () => {
     props.onDeleteNote(props.idNote);
   };
 
@@ -34,7 +34,7 @@ const Note: React.FC<NoteProps> = (props) => {
           color={"#00000"}
           height="20px"
           width="20px"
-          onClick={trashClickHandler}
+          onClick={trashNoteClickHandler}
         />
       </div>
     </div>

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { DndProvider } from "react-dnd";
 import "./App.css";
 import { Column } from "./components/Column";
@@ -7,6 +7,10 @@ import { MainContext } from "./store/main-context";
 
 const App: React.FC = () => {
   const mainCtx = useContext(MainContext);
+
+  useEffect(() => {
+    localStorage.setItem("columns", JSON.stringify(mainCtx.columns));
+  }, [mainCtx.columns]);
 
   return (
     <DndProvider backend={HTML5Backend}>

@@ -5,10 +5,8 @@
 ## Table of Contents
 
 - [Installation](#installation)
-- [Features](#features)
 - [Usage](#usage)
 - [Technologies](#technologies)
-- [Screenshots](#screenshots)
 - [Contact](#contact)
 
 ## Installation
@@ -47,20 +45,21 @@ To install the project, follow these steps:
    npm start
    ```
 
-## Features
+## Usage
 
 <figure>
-  <figcaption>Add new column</figcaption>
-  <br />
-  <br /> 
-  <img src="./screenshots/addnewcolumn.jpg" alt="Login Screen">
+  <img src="./screenshots/app-main-mod.jpg" alt="app usage explanation">
 </figure>
-
-## Usage
 
 ## Technologies
 
-## Screenshots
+This project is implemented with the following technologies and libraries:
+
+1. **React**: A JavaScript framework for building user interfaces. It allows for the creation of reusable UI components.
+
+2. **TypeScript**: A superset of JavaScript that adds static types. It allows for better documentation of code and improved tooling and debugging capabilities.
+
+3. **react-dnd**: A set of utilities for building drag-and-drop interfaces in React.
 
 ## Contact
 

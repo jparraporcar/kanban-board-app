@@ -14,6 +14,7 @@ export interface IColumn {
 export interface IMainContext {
   textNotes: INote[];
   setTextNotes: React.Dispatch<SetStateAction<INote[]>>;
+  setColumns: React.Dispatch<SetStateAction<IColumn[]>>;
   addColumnHandler: (events: any) => void;
   columnCategoryRef: React.RefObject<HTMLInputElement>;
   columns: IColumn[];

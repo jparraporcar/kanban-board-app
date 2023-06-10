@@ -31,7 +31,6 @@ input {
   overflow: scroll;
 }
 
-
 :root {
   --borderCardColour: rgb(216, 214, 214);
 }
@@ -41,9 +40,9 @@ button {
   padding: 0;
   margin: 0;
   border: 1;
-  transition: all .5s ease;
+  transition: all 0.5s ease;
 }
 
 button:hover {
-  transform: scale(1.2)
+  transform: scale(1.1);
 }

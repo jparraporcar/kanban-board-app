@@ -4,8 +4,20 @@ import { IColumn, IMainContext, INote } from "../types/types-index";
 export const MainContext = React.createContext({} as IMainContext);
 
 export const ListContextProvider: React.FC = (props) => {
-  const [textNotes, setTextNotes] = useState<INote[]>([]);
-  const [columns, setColumns] = useState<IColumn[]>([]);
+  const [textNotes, setTextNotes] = useState<INote[]>(
+    localStorage.getItem("textNotes") !== null
+      ? JSON.parse(localStorage.getItem("textNotes") as string)
+      : []
+  );
+  const [columns, setColumns] = useState<IColumn[]>(
+    localStorage.getItem("columns") !== null
+      ? JSON.parse(localStorage.getItem("columns") as string)
+      : []
+  );
+
+  console.log(columns);
+  console.log(textNotes);
+
   const columnCategoryRef = useRef<HTMLInputElement>(null);
 
   const addColumnHandler = (event: any) => {
@@ -49,6 +61,7 @@ export const ListContextProvider: React.FC = (props) => {
   const contextValue: IMainContext = {
     textNotes,
     setTextNotes,
+    setColumns,
     addColumnHandler,
     columnCategoryRef,
     columns,

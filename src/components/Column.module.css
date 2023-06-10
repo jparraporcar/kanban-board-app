@@ -22,10 +22,9 @@
 .Column-header__left-menu {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   margin: 8px;
-  width: 100px;
 }
 
 .Column-header-menu__title {
@@ -33,9 +32,13 @@
 }
 
 .Column-header__left-menu__badge {
+  display: flex;
+  justify-content: center;
   background-color: rgb(218, 214, 214);
+  width: 30px;
   padding: 4px;
-  border-radius: 12px;
+  border-radius: 19px;
+  margin-right: 10px;
 }
 
 .Column-header__right-menu {
